@@ -1,0 +1,13 @@
+html, body {
+  height: 100%;
+}
+
+.custom-footer{
+  background-color: white;
+  padding-top:    20px;
+  padding-bottom: 10px;
+  padding-left:    5px;
+  padding-right:   5px;
+  bottom: 0;
+  left: 0;
+}
