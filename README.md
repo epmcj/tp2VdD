@@ -18,17 +18,3 @@
 * Ordenação: o usuário deverá ser capaz de ordenar as flores por ordem alfabética (nome do país), pela média das métricas ou por uma das métricas.
 * Highlight: ao passar o mouse sobre uma pétala, todas as outras pétalas de todas as flores deverão ficar com opacidade reduzida (0.4). Apenas as pétalas de todas as flores referentes à métrica da pétala em questão deverão ficar com opacidade normal (1). Ao mover o mouse para fora da pétala, a opacidade de todas as pétalas devem voltar ao normal (1).
 * Tooltip: ao passar o mouse sobre uma flor deverá aparecer uma caixa no local do mouse com todas as informações daquela flor (semelhante ao que ocorre na visualização original).
- 
-O que deverá ser entregue:
-Código fonte na estrutura de diretórios abaixo: trabalhos entregues com estrutura de diretórios diferente da serão penalizados.
-            src/ (diretório raiz)
-            |── index.html (arquivo principal contendo o html e a importação de js e css)
-            |── data (diretório contendo os arquivos de dados)
-            |── assets (diretório contendo o código produzido pelo aluno)
-            |   |── js
-            |   |── css
-            |   |── img
-            |── vendors (diretório contendo as bibliotecas externas)
-            |   |── js (ex: d3.js, jquery, bootstrap.js, etc...)
-            |   |── css (bootstrap.css, ...)
-            |   |── fonts (fontes e ícones, ex: fontAwesome)
