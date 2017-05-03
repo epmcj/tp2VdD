@@ -1,5 +1,4 @@
-# tp2VdD
-## Trabalho Prático 2 da Disciplina de Visualização de Dados
+# Trabalho Prático 2 da Disciplina de Visualização de Dados
 
 **Objetivo**: reproduzir uma visualização de dados utilizando D3.js.
  
