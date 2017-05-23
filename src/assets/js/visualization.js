@@ -1,6 +1,7 @@
 FlowerVisualization = function (container) {
     /* "Constructor" method. 
-    ** Initialization of values comes here.*/
+    ** Initialization of values comes here.
+    ** Alexander e Vitor Cezar */
 
     // Selectors
     this.d3 = d3.select(container);
@@ -10,7 +11,7 @@ FlowerVisualization = function (container) {
     // SVG attr.       
     this.width  = 800;
     this.height = 600;
-    this.margin = {top: 20, right: 20, bottom:20, left: 20};
+    this.margin = {top: 20, right: 20, bottom:30, left: 30};
     this.svg;
 
     // Data attrs.
@@ -29,13 +30,16 @@ FlowerVisualization.prototype.createBase = function () {
     this.svg = this.d3.append("svg")
                       .attr("width", this.width)
                       .attr("height", this.height);
-    console.log(this.svg.attr("width"));
-    this.vis.width  = +this.svg.attr("width") - this.margin.left - this.margin.right;
-    this.vis.height = +this.svg.attr("height") - this.margin.top - this.margin.bottom;
-    console.log(this.vis.width);
+    
+    this.vis.width  = +this.svg.attr("width") - this.margin.left 
+                                              - this.margin.right;
+                                              
+    this.vis.height = +this.svg.attr("height") - this.margin.top 
+                                               - this.margin.bottom;
 
     this.vis.base = this.svg.append("g")
-                   .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+                   .attr("transform", "translate(" + this.margin.left 
+                         + "," + this.margin.top + ")");
 }
 
 FlowerVisualization.prototype.createAxes = function () {
@@ -54,9 +58,7 @@ FlowerVisualization.prototype.createAxes = function () {
                  .call(d3.axisLeft(this.y));
 }
 
+/** Otavio */
 FlowerVisualization.prototype.createFlowers = function () {
 
-}
-
-
-   d3.select("#visualization")                           
+}                           
