@@ -22,17 +22,18 @@ var draw = function() {
         flowerBud.attr('x', 0).attr('y', 0).attr('r', 1);
 
         //label
-        //var Label = d3.select(this).selectAll(".flower-label").data([e]); //UPDATE
-        //Label.exit().remove(); //EXIT
-        //Label = Label.enter().append('text').attr('class', "flower-label").merge(Label); //ENTER
+        var Label = d3.select(this).selectAll(".flower-label").data([e]); //UPDATE
+        Label.exit().remove(); //EXIT
+        Label = Label.enter().append('text').attr('class', "flower-label").merge(Label); //ENTER
 
-        //Label.attr('transform', 'rotate(90) translate()').text(function(d) { return countries[d.country].pt;});
+        Label.attr('transform', 'rotate(90) translate()').text(function(d) { return countries[d.country].pt;});
 
+        //TODO change this metrics
         var metrics = Object.keys(e).filter(function (k) { return k !== "country";}).sort(function(a, b) {
             return d3.ascending(a, b);
         })
 
-
+        /*
         //Petals line
         var flowerPetal = d3.select(this).selectAll(".flower-petal").data(metrics); //UPDATE
         flowerPetal.exit().remove(); //EXIT
@@ -40,13 +41,14 @@ var draw = function() {
         flowerPetal.attr()
         .attr('x1', 0)
         .attr('y1', 0)
-        .attr('x2', function(k, i) {})
-        .attr('y2', function(k, i) {})
+        .attr('x2', function(k, i) {return petalScale(k)+e[k] * Math.cos(((2 * Math.PI)/metrics.length) * i)})
+        .attr('y2', function(k, i) {return petalScale(k)+e[k] * Math.sin(((2 * Math.PI)/metrics.length) * i)})
         .style('fill', 'none')
         .style('stroke', function (k){ return colorScale(k); });
+        */
         
         //Petals ellipse 
-        /*
+        
         var flowerPetal = d3.select(this).selectAll(".flower-petal").data(metrics); //UPDATE
         flowerPetal.exit().remove(); //EXIT
         flowerPetal = flowerPetal.enter()
@@ -54,14 +56,16 @@ var draw = function() {
         flowerPetal
         .attr('cx', 0)
         .attr('cy', 0)
-        .attr('rx', function(k, i) {})
-        .attr('ry', function(k, i) {})
-        .style('fill',function (k){ return colorScale(k); } )
-        .attr( 'transform', function () {
-            return d3.svg.transform().rotate(function(k, i) {});
-            //var translate = d3.svg.transform().translate(1, 1);
+        .attr('rx', petalScale(k)+e[k]) //length of ellipse 
+        .attr('ry', 5) //width fix 
+        .style('fill',function (k){ return colorScale(k); })
+        .attr( 'transform', function (k, i) {
+            return d3.svg.transform()
+            .rotate( (360/metrics.length) * i)
+            .translate((1 + (d3.select(this).rx / 2)) * Math.cos(((2 * Math.PI)/metrics.length) * i)
+            ,(1 + (d3.select(this).rx / 2)) * Math.sin(((2 * Math.PI)/metrics.length) * i));
         })
-        */
+
     })
 }
 
