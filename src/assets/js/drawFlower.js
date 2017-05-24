@@ -1,17 +1,22 @@
 //Draw
 var draw = function() {
     
-    //already done in visualization.js
-    //var elements = g.selectAll("g.vis-elements").data(["vis-elements"]);
-    //elements.exit().remove();
-    //elements = elements.enter().append('g').attr('class', "vis-elements").merge(elements);
+    var rFlowerBud = 1;
+    var ryPetal = 5;
+    var xScale;
+    var yScale;
+
+    var elements = g.selectAll("g.vis-elements").data(["vis-elements"]);
+    elements.exit().remove();
+    elements = elements.enter().append('g').attr('class', "vis-elements").merge(elements);
 
     var flowers = elements.selectAll("g.flower").data(data); //UPDATE
     flowers.exit().remove(); //EXIT
     flowers = flowers.enter().append('g').attr('class', "flowers").merge(flowers); //ENTER
     
     flowers.attr('transform', function(d) {
-        return "translate(" + (xScale.bandwidth()/2)+ "," + (yScale(+d.mean))+ ")";
+        //xScale and yScale must be change to flowerVisualization.x and y
+        return "translate("+ (xScale(d.country)) + (xScale.bandwidth()/2)+ "," + (yScale(+d.mean))+ ")";
     }).each(function (e) {
         
         //center
@@ -19,14 +24,7 @@ var draw = function() {
         flowerBud.exit().remove(); //EXIT
         flowerBud = flowerBud.enter.append('circle').attr('class', "flower-bud").merge(flowerBud); //ENTER
 
-        flowerBud.attr('x', 0).attr('y', 0).attr('r', 1);
-
-        //label
-        var Label = d3.select(this).selectAll(".flower-label").data([e]); //UPDATE
-        Label.exit().remove(); //EXIT
-        Label = Label.enter().append('text').attr('class', "flower-label").merge(Label); //ENTER
-
-        Label.attr('transform', 'rotate(90) translate()').text(function(d) { return countries[d.country].pt;});
+        flowerBud.attr('x', 0).attr('y', 0).attr('r', rFlowerBud);
 
         //TODO change this metrics
         var metrics = Object.keys(e).filter(function (k) { return k !== "country";}).sort(function(a, b) {
@@ -48,7 +46,6 @@ var draw = function() {
         */
         
         //Petals ellipse 
-        
         var flowerPetal = d3.select(this).selectAll(".flower-petal").data(metrics); //UPDATE
         flowerPetal.exit().remove(); //EXIT
         flowerPetal = flowerPetal.enter()
@@ -56,15 +53,22 @@ var draw = function() {
         flowerPetal
         .attr('cx', 0)
         .attr('cy', 0)
-        .attr('rx', petalScale(k)+e[k]) //length of ellipse 
+        .attr('rx', petalScale(k)+e[k]) //length of ellipse TODO
         .attr('ry', 5) //width fix 
         .style('fill',function (k){ return colorScale(k); })
         .attr( 'transform', function (k, i) {
             return d3.svg.transform()
             .rotate( (360/metrics.length) * i)
-            .translate((1 + (d3.select(this).rx / 2)) * Math.cos(((2 * Math.PI)/metrics.length) * i)
-            ,(1 + (d3.select(this).rx / 2)) * Math.sin(((2 * Math.PI)/metrics.length) * i));
+            .translate((rFlowerBud + (d3.select(this).rx / 2)) * Math.cos(((2 * Math.PI)/metrics.length) * i)
+            ,(rFlowerBud + (d3.select(this).rx / 2)) * Math.sin(((2 * Math.PI)/metrics.length) * i));
         })
+
+        //label
+        var Label = d3.select(this).selectAll(".flower-label").data([e]); //UPDATE
+        Label.exit().remove(); //EXIT
+        Label = Label.enter().append('text').attr('class', "flower-label").merge(Label); //ENTER
+
+        Label.attr('transform', 'rotate(90) translate(20, 4)').text(function(d) { return countries[d.country].pt;});
 
     })
 }
