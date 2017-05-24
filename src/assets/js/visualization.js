@@ -9,8 +9,8 @@ FlowerVisualization = function (container) {
     this.jquery = $(container); // Delete if it's not used.
 
     // SVG attr.       
-    this.width  = window.innerWidth * 0.8;
-    this.height = window.innerHeight * 0.75;
+    this.width  = window.innerWidth * 0.85;
+    this.height = window.innerHeight * 0.8;
     this.margin = {top: 20, right: 20, bottom:30, left: 30};
     this.svg;
 
@@ -24,6 +24,7 @@ FlowerVisualization = function (container) {
 
     this.createBase();
     this.createAxes();
+    this.createFlowers();
 }
 
 FlowerVisualization.prototype.createBase = function () {
@@ -38,6 +39,7 @@ FlowerVisualization.prototype.createBase = function () {
                                                  - this.margin.bottom;
 
     this.chart.base = this.svg.append("g")
+                   .attr("class", "wraper")
                    .attr("transform", "translate(" + this.margin.left 
                          + "," + this.margin.top + ")");
 }
@@ -46,7 +48,7 @@ FlowerVisualization.prototype.createAxes = function () {
     this.x = d3.scaleBand().rangeRound([0, this.chart.width]).padding(0.1);
     this.y = d3.scaleLinear().rangeRound([this.chart.height, 0]);
 
-    // Axis X
+    /* Axis X
     this.chart.base.append("g")
                  .attr("class", "axis axis--x")
                  .attr("transform", "translate(0," + this.chart.height + ")")
@@ -56,9 +58,10 @@ FlowerVisualization.prototype.createAxes = function () {
     this.chart.base.append("g")
                  .attr("class", "axis axis--y")
                  .call(d3.axisLeft(this.y));
+                 */
 }
 
 /** Otavio */
 FlowerVisualization.prototype.createFlowers = function () {
-
+    getData(this.chart, this.x, this.y);
 }                           

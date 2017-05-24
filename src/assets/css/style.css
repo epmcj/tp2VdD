@@ -19,12 +19,5 @@ html, body {
 svg {
   border-radius: 3px;
   background-color: #EDEDED;
-  margin-left: 20px;
-}
-
-.block {
-  width: 100 px;
-  height: 100px;
-  background-color: red;
-  margin: 5px 5px 5px 5px;
+  /*margin-left: 20px;*/
 }

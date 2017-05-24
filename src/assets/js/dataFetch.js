@@ -1,4 +1,4 @@
-function getData(){
+function getData(chart, x, y){
 	var infoPaises;
 	//leitura do arquivo csv
 	d3.csv("../../data/data.csv", function(data) {
@@ -31,12 +31,12 @@ function getData(){
 		infoPaises.sort(function(a, b) {//ordena os países (pt extra)
 			return a["country"].localeCompare(b["country"]);
 		});
-		createChart(infoPaises);//chama a função de construção do gráfico quando já estiver finalizado
+		createChart(infoPaises, chart, x, y);//chama a função de construção do gráfico quando já estiver finalizado
 	  });
 	});
 }
 
-function createChart(infoPaises){
-	console.log(infoPaises);
-	//crie o gráfico aqui.
+function createChart(infoPaises, chart, x, y){
+	console.log('Creating...')
+	drawFlower(chart, infoPaises, x, y)
 }
