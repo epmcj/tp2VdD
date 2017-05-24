@@ -2,7 +2,7 @@ html, body {
   height: 100%;
 }
 
-.custom-footer{
+.custom-footer {
   background-color: white;
   padding-top:    20px;
   padding-bottom: 10px;
@@ -12,7 +12,19 @@ html, body {
   left: 0;
 }
 
+.header {
+  margin-bottom: 20px;
+}
+
 svg {
-  background-color: #FFEFCE;
+  border-radius: 3px;
+  background-color: #EDEDED;
   margin-left: 20px;
+}
+
+.block {
+  width: 100 px;
+  height: 100px;
+  background-color: red;
+  margin: 5px 5px 5px 5px;
 }
