@@ -27,9 +27,7 @@ var draw = function() {
         flowerBud.attr('x', 0).attr('y', 0).attr('r', rFlowerBud);
 
         //TODO change this metrics
-        var metrics = Object.keys(e).filter(function (k) { return k !== "country";}).sort(function(a, b) {
-            return d3.ascending(a, b);
-        })
+        var metrics = Object.keys(e).filter(function (k) { return k !== "country";});
 
         /*
         //Petals line
